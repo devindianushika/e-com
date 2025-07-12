@@ -8,16 +8,16 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ProductService {
-
-
     private ProductRepository productRepository;
 
-    @Autowired
     public ProductService(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
 
     public Product createProductService(Product productRequest){
        return productRepository.save(productRequest);
+    }
+    public Product getProductById(long id){
+        return productRepository.findById(id).orElseThrow(() -> new RuntimeException("Product not found"));
     }
 }
